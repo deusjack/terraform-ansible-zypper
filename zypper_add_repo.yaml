@@ -1,0 +1,21 @@
+---
+- hosts: "{{ hostname }}"
+  gather_facts: no
+  tasks:
+    - name: Add repo to zypper
+      community.general.zypper_repository:
+        auto_import_keys: true
+        autorefresh: true
+        enabled: true
+        priority: "{{ priority | int }}"
+        runrefresh: true
+        state: present
+        overwrite_multiple: true
+        disable_gpg_check: "{{ disable_gpg_check | bool }}"
+        name: "{{ repo_name }}"
+        repo: "{{ repo_url }}"
+      register: repo
+    - name: Reboot
+      ansible.builtin.reboot:
+        post_reboot_delay: 60
+      when: repo is changed

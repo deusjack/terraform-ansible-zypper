@@ -1,0 +1,14 @@
+---
+- hosts: "{{ hostname }}"
+  gather_facts: no
+  tasks:
+    - name: Install package via zypper
+      community.general.zypper:
+        name: "{{ names }}"
+        state: latest
+        update_cache: true
+      register: packages
+    - name: Reboot
+      ansible.builtin.reboot:
+        post_reboot_delay: 60
+      when: packages is changed
