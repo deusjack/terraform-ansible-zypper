@@ -1,7 +1,7 @@
 resource "ansible_playbook" "repos" {
   for_each                = var.repos
   name                    = var.hostname
-  playbook                = "${path.root}/../ansible/zypper_add_repo.yaml"
+  playbook                = "${path.module}/../ansible/zypper_add_repo.yaml"
   replayable              = false
   ignore_playbook_failure = false
   extra_vars = {
@@ -21,7 +21,7 @@ resource "ansible_playbook" "repos" {
 resource "ansible_playbook" "packages" {
   depends_on              = [ansible_playbook.repos]
   name                    = var.hostname
-  playbook                = "${path.root}/../ansible/zypper_install.yaml"
+  playbook                = "${path.module}/../ansible/zypper_install.yaml"
   replayable              = false
   ignore_playbook_failure = false
   extra_vars = {
@@ -38,7 +38,7 @@ resource "ansible_playbook" "packages" {
 resource "ansible_playbook" "packages_uninstall" {
   depends_on              = [ansible_playbook.packages]
   name                    = var.hostname
-  playbook                = "${path.root}/../ansible/zypper_uninstall.yaml"
+  playbook                = "${path.module}/../ansible/zypper_uninstall.yaml"
   replayable              = false
   ignore_playbook_failure = false
   extra_vars = {
