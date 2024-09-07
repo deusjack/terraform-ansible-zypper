@@ -8,6 +8,12 @@ resource "null_resource" "zypper_install" {
   }
 }
 
+resource "null_resource" "zypper_uninstall" {
+  triggers = {
+    zypper_uninstall = filemd5("${path.module}/zypper_uninstall.yaml")
+  }
+}
+
 resource "null_resource" "zypper_add_repo" {
   triggers = {
     zypper_add_repo = filemd5("${path.module}/zypper_add_repo.yaml")
@@ -29,6 +35,12 @@ resource "null_resource" "external" {
 resource "null_resource" "variables_packages" {
   triggers = {
     packages = join(", ", var.packages)
+  }
+}
+
+resource "null_resource" "variables_packages_uninstall" {
+  triggers = {
+    packages_uninstall = join(", ", var.packages_uninstall)
   }
 }
 

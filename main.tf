@@ -34,3 +34,20 @@ resource "ansible_playbook" "packages" {
     ]
   }
 }
+
+resource "ansible_playbook" "packages_uninstall" {
+  depends_on              = [ansible_playbook.packages]
+  name                    = var.hostname
+  playbook                = "${path.root}/../ansible/zypper_uninstall.yaml"
+  replayable              = false
+  ignore_playbook_failure = false
+  extra_vars = {
+    names = jsonencode(var.packages_uninstall)
+  }
+  lifecycle {
+    replace_triggered_by = [
+      null_resource.zypper_uninstall,
+      null_resource.variables_packages_uninstall
+    ]
+  }
+}

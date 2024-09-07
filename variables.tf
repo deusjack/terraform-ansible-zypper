@@ -16,6 +16,12 @@ variable "packages" {
   default     = []
 }
 
+variable "packages_uninstall" {
+  type        = list(string)
+  description = "List of packages to be uninstalled"
+  default     = []
+}
+
 variable "repos" {
   type = map(object({
     url               = string
