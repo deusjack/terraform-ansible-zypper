@@ -1,4 +1,4 @@
-# module-zypper
+# terraform-ansible-zypper
 Terraform module for zypper on MicroOS with Ansible
 
 > [!Warning]
@@ -8,7 +8,7 @@ Terraform module for zypper on MicroOS with Ansible
 
 # Terraform Docs
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -22,7 +22,7 @@ Terraform module for zypper on MicroOS with Ansible
 | Name | Version |
 |------|---------|
 | <a name="provider_ansible"></a> [ansible](#provider\_ansible) | 1.3.0 |
-| <a name="provider_null"></a> [null](#provider\_null) | 3.2.2 |
+| <a name="provider_null"></a> [null](#provider\_null) | 3.2.3 |
 
 ## Modules
 
@@ -56,4 +56,4 @@ No modules.
 ## Outputs
 
 No outputs.
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
